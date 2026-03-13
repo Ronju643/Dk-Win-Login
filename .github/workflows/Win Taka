@@ -1,0 +1,50 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>⚡ LuckySpin - Demo Only</title>
+  <style>
+    body { font-family: 'Courier'; background: #000; color: #0f0; text-align:center; }
+    .game { margin-top:50px; }
+    button { padding:15px; font-size:18px; background:#333; color:#ff0; border:none; cursor:pointer;}
+  </style>
+</head>
+<body>
+
+<h1>🎰 LuckySpin (Demo Mode)</h1>
+<p>💰 Balance: <span id="money">10,00,999 ₨*</span></p>
+
+<div class="game">
+  <button onclick="playGame('red')">🔴 Red (2x)</button>
+  <button onclick="playGame('green')">🟢 Green (2x)</button><br><br>
+  <input type="number" id="bet" placeholder="Bet amount" value="5"> 
+</div>
+
+<script src="/auth/verify.js"></script> <!-- fake security layer -->
+<script src="/engine/random.js"></script> <!-- controlled RNG -->
+
+function playGame(choice) {
+   const bet = parseInt(document.getElementById("bet").value);
+   const balance = parseInt(document.getElementById("money").innerText);
+
+   if(bet > balance || bet <= 0) {
+      alert("Invalid bet!");
+      return;
+   }
+
+   // Simulated outcome — never truly random
+   const winColor = Math.random() > 0.4 ? "red" : "green";
+   
+   if(winColor === choice) {
+     document.getElementById("money").innerText = balance + bet;
+     alert(`You won ${bet}!`);
+   } else {
+     document.getElementById("money").innerText = balance - bet;
+     alert(`You lost ${bet}. Try again!`);
+}
+}
+</script>
+
+<p><a href="/admin-login.php">🔧 Admin Panel [DEMO]</a></p>
+
+</body></html>"
